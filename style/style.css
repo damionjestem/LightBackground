@@ -1,10 +1,5 @@
 body {
-  display: flex;
-  padding: 100px 200px 50px 200px;
-}
-
-body > * {
-  padding: 15px;
+  margin: 5%;
 }
 
 .error {
@@ -20,12 +15,16 @@ body > * {
 .side {
   background-color: #ece0b7;
   color: #292239;
-  margin: auto;
+  padding: 10px;
 }
 
-.container {
+.output {
   background-color: #292239;
-  padding: 2%;
+  padding: 10px;
+}
+
+.dots-row {
+  display: flex;
 }
 
 .dot {

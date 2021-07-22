@@ -16,18 +16,22 @@
     </head>
 
     <body>
-        <div class="side" id="side">
-            <p>Wpisz wysokość i szerokość punktów do wygenerowania</p>
-            <form>
-                <label for="height">Wysokość</label><br>
-                <input type="number" id="height" name="height" min="1"><br>
-                <label for="width">Szerokość</label><br>
-                <input type="number" id="width" name="width" min="1"><br>
-                <button type="button" onclick="func()">Submit</button>
-            </form>
-        </div>
-        <div class="container" id="content">
-            <!-- here go the dots -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="side col-md-4" id="side">
+                    <p>Wpisz wysokość i szerokość punktów do wygenerowania:</p>
+                    <form>
+                        <label for="height">Wysokość</label><br>
+                        <input type="number" id="height" name="height" min="1"><br>
+                        <label for="width">Szerokość</label><br>
+                        <input type="number" id="width" name="width" min="1"><br>
+                        <button type="button" onclick="func()">Submit</button>
+                    </form>
+                </div>
+                <div class="output col-md-8" id="content">
+                    <!-- here go the dots -->
+                </div>
+            </div>
         </div>
     </body>
 </html>
