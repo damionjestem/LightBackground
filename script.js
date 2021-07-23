@@ -31,8 +31,13 @@ function getMessage(msg, c = "error") {
   output.insertAdjacentElement("afterbegin", bubble);
 }
 
+function codeReveal(element) {
+  const output = document.getElementById("code-output");
+  output.innerHTML = element.innerHTML.toString;
+}
+
 function func() {
-  const output = document.getElementById("content");
+  const output = document.getElementById("dots-output");
   //reset content of output
   output.innerHTML = "";
   var height = parseInt(getValue(h));
@@ -41,7 +46,7 @@ function func() {
     getMessage("Oba pola muszą zawierać liczby!");
   }
 
-  function dotStyle(dot) {
+  function createDot(dot) {
     dot.setAttribute("id", j.toString() + i.toString());
     dot.setAttribute("class", "dot");
     dot.style.backgroundColor = randomColor();
@@ -52,11 +57,12 @@ function func() {
     row.setAttribute("class", "dots-row");
     for (var j = 0; j <= width - 1; j++) {
       let dot = document.createElement("div");
-      dotStyle(dot);
+      createDot(dot);
       row.appendChild(dot);
     }
     if (output) {
       output.insertAdjacentElement("afterbegin", row);
     }
   }
+  codeReveal();
 }
