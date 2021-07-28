@@ -7,15 +7,15 @@ const w = "width";
  * @returns value of element
  */
 function getValue(id) {
-  return document.getElementById(id).value;
+    return document.getElementById(id).value;
 }
 
 function randomColor() {
-  function randomHex() {
-    let str = Math.round(132 + Math.random() * 123).toString(16);
-    return str.length == 1 ? "0" + str : str;
-  }
-  return "#" + randomHex() + randomHex() + randomHex();
+    function randomHex() {
+        let str = Math.round(132 + Math.random() * 123).toString(16);
+        return str.length == 1 ? "0" + str : str;
+    }
+    return "#" + randomHex() + randomHex() + randomHex();
 }
 
 /**
@@ -24,45 +24,46 @@ function randomColor() {
  * @param {string} c - class of div message will appear, "error" by default
  */
 function getMessage(msg, c = "error") {
-  const output = document.getElementById("content");
-  let bubble = document.createElement("div");
-  bubble.setAttribute("class", c);
-  bubble.innerHTML = msg;
-  output.insertAdjacentElement("afterbegin", bubble);
+    const parentDiv = document.getElementById("dots-output");
+    let bubble = document.createElement("div");
+    bubble.setAttribute("class", c);
+    bubble.innerHTML = msg;
+    parentDiv.insertAdjacentElement("afterbegin", bubble);
 }
 
 function codeReveal(element) {
-  const output = document.getElementById("code-output");
-  output.innerHTML = element.innerHTML.toString;
+    const outputDiv = document.getElementById("code-output");
+    let codeOutput = document.createElement("code");
+    codeOutput.innerHTML = element.innerHTML;
+    outputDiv.insertAdjacentElement("afterbegin", codeOutput);
 }
 
 function func() {
-  const output = document.getElementById("dots-output");
-  //reset content of output
-  output.innerHTML = "";
-  var height = parseInt(getValue(h));
-  var width = parseInt(getValue(w));
-  if (!height || !width) {
-    getMessage("Oba pola muszą zawierać liczby!");
-  }
+    const output = document.getElementById("dots-output");
+    //reset content of output
+    output.innerHTML = "";
+    var height = parseInt(getValue(h));
+    var width = parseInt(getValue(w));
 
-  function createDot(dot) {
-    dot.setAttribute("id", j.toString() + i.toString());
-    dot.setAttribute("class", "dot");
-    dot.style.backgroundColor = randomColor();
-  }
+    if (height && width) {
+        function createDot(dot) {
+            dot.setAttribute("id", j.toString() + i.toString());
+            dot.setAttribute("class", "dot");
+            dot.style.backgroundColor = randomColor();
+        }
 
-  for (var i = 0; i <= height - 1; i++) {
-    let row = document.createElement("div");
-    row.setAttribute("class", "dots-row");
-    for (var j = 0; j <= width - 1; j++) {
-      let dot = document.createElement("div");
-      createDot(dot);
-      row.appendChild(dot);
-    }
-    if (output) {
-      output.insertAdjacentElement("afterbegin", row);
-    }
-  }
-  codeReveal();
+        for (var i = 0; i <= height - 1; i++) {
+            let row = document.createElement("div");
+            row.setAttribute("class", "dots-row");
+            for (var j = 0; j <= width - 1; j++) {
+                let dot = document.createElement("div");
+                createDot(dot);
+                row.appendChild(dot);
+            }
+            if (output) {
+                output.insertAdjacentElement("afterbegin", row);
+            }
+        }
+        codeReveal(output);
+    } else getMessage("Oba pola muszą zawierać liczby!");
 }
