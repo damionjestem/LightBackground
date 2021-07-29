@@ -1,5 +1,19 @@
 const h = "height";
 const w = "width";
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+    "/": "&#x2F;",
+};
+
+function escapeHtml(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+        return entityMap[s];
+    });
+}
 
 /**
  *
@@ -34,7 +48,7 @@ function getMessage(msg, c = "error") {
 function codeReveal(element) {
     const outputDiv = document.getElementById("code-output");
     let codeOutput = document.createElement("code");
-    codeOutput.innerHTML = element.innerHTML;
+    codeOutput.innerHTML = escapeHtml(element.innerHTML);
     outputDiv.insertAdjacentElement("afterbegin", codeOutput);
 }
 
